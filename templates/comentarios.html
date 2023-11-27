@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+    </head>
+
+<body>
+    <h1>Comentarios</h1>
+    <h3>Agregar comentario</h3>
+    <form method="post" action="/comentarios">
+        <textarea name="comentario" rows="4" cols="50" required></textarea><br>
+        <input type="submit" value="Publicar comentario">
+    </form>
+
+    {% if usuario %}
+    <p>Bienvenido, {{ usuario }}. Deja tu comentario:</p>
+    <form method="post" action="/comentarios">
+        <textarea name="comentario" rows="4" cols="50" required></textarea><br>
+        <input type="submit" value="Publicar comentario">
+    </form>
+    
+    <hr>
+    {% endif %}
+
+{% if comentarios %}
+<h2>Comentarios</h2>
+<ul>
+    {% for comentario in comentarios %}
+    <li>{{ comentario.usuario }} ({{ comentario.fecha }}): <br> {{ comentario.comentario }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay comentarios aún.</p>
+{% endif %}
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/web/css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link type="image/png" rel="icon" href="img/logo/Dulces promesas.jpg">
+    <title>"Las Dulces Promesas"</title>
+</head>
+<body>
+    
+    <header data-aos="fade-down" data-aos-duration="2000">
+        <article class="contHeader">
+            <section class="perfilHeader">
+
+                <a href="{{ url_for('login') }}"><img src="/static/web/img/perfil.png" class="perfil" alt="perfil"></a>
+                <i class='bx bx-chevron-down bx-md'></i>
+                {% if username %}
+                <p>Bienvenido, {{ username }}!</p>
+                {% else %}
+                <p>Bienvenido al sitio web!</p>
+                {% endif %}
+
+            </section>
+
+            <nav>
+
+                <ul class="direcciones">
+                    <li><a href="{{ url_for('index.index') }}">Inicio</a></li>
+                    <li><a href="{{ url_for('compras') }}">Pedidos Online</a></li>
+                    <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                    <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
+                    <li><a href="{{ url_for('comentarios') }}">Comentarios</a></li>
+
+                    
+
+                </ul>
+
+            </nav>
+
+            <section class="redesHeader">
+
+                <div class="redes">
+                    <a href="https://www.facebook.com/profile.php?id=61551121165907" target="_blank"><i class='bx bxl-facebook bx-sm'></i></a>
+                    <a href="#"><i class='bx bxl-whatsapp bx-sm'></i></a>
+                    <a href="#"><i class='bx bxl-pinterest-alt bx-sm'></i></a>
+                    <a target="_blank" href="https://www.instagram.com/dulces_promesas_oficial/?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"><i class='bx bxl-instagram bx-sm'></i></a>
+                </div>
+            </section>
+        </article>
+
+    </header>
+
+    <div class="contLine" data-aos="fade-down" data-aos-duration="2000">
+        <div class="linea"></div>
+    </div>
+
+<!-----------Cuerpo-------------->
+    
+    <section class="centro">
+
+        <article class="contCentro">
+
+            <section class="contPrincipal">
+
+                <article class="title">
+                    <h1>Las Dulces Promesas</h1>
+                </article>
+
+                <article class="presentacion" data-aos="fade-up""
+                data-aos-duration="2000">
+
+                    <div class="contImg">
+                        <div class="preImagen start"><img src="/static/web/img/imgUno.png" class="imagen" alt=""></div>
+                    </div>
+
+                    <div class="contImg textoImg">
+                        <img src="/static/web/img/imgDos.png" class="imagen">
+                            <div class="texto-encima">Diseñamos <br> pasteles de <br> bodas y <br> bocadillos de <br> alta calidad</div>
+                            <div class="boton-encima"><button class="pedido"><a href="compras.html"> Hacer un pedido </a></button></div>
+                    </div>
+
+                    <div class="contImg">
+                        <div class="preImagen end"><img src="/static/web/img/imgTres.png" class="imagen" alt=""></div>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <section class="contSecundario">
+                
+                <article class="subTexto">
+                    <div class="contTexto">
+                        <h2>PASTELES DISEÑADOS A TU GUSTO Y ESTILO</h2>
+                    </div>
+                </article>
+
+                <article class="secciones">
+
+                    <div class="contSecciones" data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="top-bottom" >
+                        <div class="contMover">
+                            <div class="conocer caja">
+                                <img src="/static/web/img/conocenos.png" class="secImg" alt="">
+                                <div class="botonDentro izq"><a href="nosotros.html"><button class="botoncito">Conócenos</button></div></a>
+                            </div>
+
+                            <div class="contactar caja">
+                                <img src="/static/web/img/contactanos.png" class="secImg" alt="">
+                                <div class="botonDentro der"><a href="contacto.html"><button class="botoncito">Contáctanos</button></div></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+            </section>
+
+            <section class="contTerceario"  data-aos="fade-up" data-aos-duration="2000" data-aos-anchor-placement="top-bottom">
+
+                <article class="siguenos">
+                    <div class="siguenosText"><h2>Síguenos en nuestras Redes Sociales</h2></div>
+                    <div class="contPostres">
+                        <div class="contimage">
+                            <img src="/static/web/img/Siguenos/Rectangle 13.png" class="enseñar" alt="">
+                            <div class="textUp">CupCake</div>
+                        </div>
+                        <div class="contimage">
+                            <img src="/static/web/img/Siguenos/Rectangle 14.png" class="enseñar" alt="">
+                            <div class="textUp">Tarta <br> Chantillí</div>
+                        </div>
+                        <div class="contimage">
+                            <img src="/static/web/img/Siguenos/Rectangle 15.png" class="enseñar" alt="">
+                            <div class="textUp">Tarta de <br> Fresas</div>
+                        </div>
+                        <div class="contimage">
+                            <img src="/static/web/img/Siguenos/Rectangle 16.png" class="enseñar" alt="">
+                            <div class="textUp">Queque <br> Chantillí</div>
+                        </div>
+                        <div class="contimage">
+                            <img src="/static/web/img/Siguenos/Rectangle 17.png" class="enseñar" alt="">
+                            <div class="textUp">Queque <br> Chocolate</div>
+                        </div>
+                        <div class="contimage">
+                            <img src="/static/web/img/Siguenos/Rectangle 18.png" class="enseñar" alt="">
+                            <div class="textUp">Helado</div>
+                        </div>
+                        <div class="contimage">
+                            <img src="/static/web/img/Siguenos/Rectangle 19.png" class="enseñar" alt="">
+                            <div class="textUp">Pastel Tres <br> Leches</div>
+                        </div>
+                    </div>
+
+                </article>
+            </section>
+        </article>
+    </section>
+
+    <footer>
+
+        <article class="redesSociales">
+
+            <div class="contRedes" data-aos="zoom-in" data-aos-duration="1500">
+                
+                <a target="_blank" href="https://www.instagram.com/dulces_promesas_oficial/?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D" class="red ig"><img src="/static/web/img/Redes/instagram (2).png" class="redSocial" alt=""></a>
+
+                <a href="https://www.facebook.com/profile.php?id=61551121165907" target="_blank" class="red fb"><img src="/static/web/img/Redes/facebook.png" class="redSocial" alt=""></a>
+
+                <a href="#" class="red tw"><img src="/static/web/img/Redes/gorjeo (1).png" class="redSocial" alt=""></a>
+
+                <a href="#" class="red tk"><img src="/static/web/img/whatsapp.png" class="redSocial" alt=""></a>
+
+            </div>
+
+        </article>
+
+        <article class="derechosAutor">
+
+            
+
+
+        </article>
+
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init();
+    </script>
+
+    <script src="/static/web/js/app.js"></script>
+</body>
+</html>
