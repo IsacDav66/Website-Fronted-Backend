@@ -97,6 +97,9 @@ def add_pokemon():
             return jsonify({'id': pokemon_id, 'message': 'Pokémon agregado correctamente.'}), 201
         else:
             return jsonify({'error': 'Se requieren el nombre y la descripción del Pokémon.'}), 400
-    # Iniciar la aplicación Flask
-if __name__ == '__main__':    
-    app.run(debug=True)
+
+# Utiliza el puerto proporcionado por la variable de entorno PORT
+port = int(os.environ.get("PORT", 5000))
+
+# Configura el host en '0.0.0.0' para que sea accesible desde cualquier dirección IP
+app.run(debug=True, host='0.0.0.0', port=port)
