@@ -1,3 +1,9 @@
 runtime: python-3.11
 build:
   builder: NIXPACKS
+  packages:
+    - python3
+    - python3Packages.flask
+    - python3Packages.gunicorn
+environment:
+  PATH: "${python3Packages.gunicorn}/bin:$PATH"
