@@ -12,8 +12,10 @@ from src.controllers.loginController import LoginController
 from src.controllers.registroController import RegistroController
 from src.controllers.comentariosController import ComentariosController
 from src.cn.data_base_connection import initialize_database
+from src.controllers.productosController import ProductosController
+from src.models.productosModel import ProductoModel
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 # Configurar la conexión a la base de datos (PostgreSQL en este caso)
 initialize_database(app)
@@ -59,6 +61,11 @@ app.register_blueprint(registro_controller.get_blueprint(), url_prefix='/registr
 comentarios_controller = ComentariosController(app)
 app.register_blueprint(comentarios_controller.get_blueprint(), url_prefix='/comentarios')
 
+productos_controller = ProductosController(app)
+app.register_blueprint(productos_controller.get_blueprint(), url_prefix= '/productos')
+
+
+    
 
 
 
