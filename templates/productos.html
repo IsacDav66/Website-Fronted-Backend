@@ -9,11 +9,20 @@
 </head>
 
 <body>
+    <a href="{{ url_for('ver_carrito') }}">Ir al Carrito</a>
+
     {% if username %}
     <p>Bienvenido, {{ username }}!</p>
     {% else %}
     <p>Bienvenido al sitio web!</p>
     {% endif %}
+    <form method="post" action="{{ url_for('comprar') }}">
+        <button type="submit">Finalizar Compra</button>
+    </form>
+
+    <form method="post" action="{{ url_for('ver_carrito') }}">
+        <button type="submit">Finalizar Compra en carrito</button>
+    </form>
     <h1>Lista de Productos</h1>
     <ul>
         {% for producto in productos %}
@@ -23,18 +32,16 @@
             <p>Precio: ${{ producto['precio'] }}</p>
             <img src="{{ producto['imagen'] }}" alt="{{ producto['nombre'] }} Image">
 
-            <!-- Agregar el formulario para seleccionar la cantidad -->
+            <!-- Formulario para agregar al carrito sin opción de cantidad -->
             <form method="post" action="{{ url_for('agregar_al_carrito', producto_id=producto.id) }}">
 <label for="cantidad">Cantidad:</label>
                 <input type="number" id="cantidad" name="cantidad" value="1" min="1">
-                                <button type="submit">Agregar al Carrito</button>
+                <button type="submit">Agregar al Carrito</button>
             </form>
         </li>
         {% endfor %}
     </ul>
 
-    <!-- Agregar el enlace para ir al carrito -->
-    <a href="{{ url_for('ver_carrito') }}">Ir al Carrito</a>
 </body>
 
 </html>

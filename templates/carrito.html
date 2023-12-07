@@ -1,37 +1,41 @@
 <!-- templates/carrito.html -->
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
 </head>
+
 <body>
+    {% if username %}
+    <p>Bienvenido, {{ username }}!</p>
+    {% else %}
+    <p>Bienvenido al sitio web!</p>
+    {% endif %}
     <h1>Carrito de Compras</h1>
 
-    {% if productos_carrito %}
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Producto ID</th>
-                <th>Cantidad</th>
-                <th>Precio Total</th>
-                <th>Fecha de Compra</th>
-            </tr>
-            {% for producto in productos_carrito %}
-                <tr>
-                    <td>{{ producto[0] }}</td>
-                    <td>{{ producto[1] }}</td>
-                    <td>{{ producto[2] }}</td>
-                    <td>{{ producto[3] }}</td>
-                    <td>{{ producto[4] }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+    {% if productos_en_carrito %}
+    <ul>
+        {% for cart_details in productos_en_carrito %}
+        <li>
+            <strong>Producto ID: {{ cart_details.product_id }}</strong>
+            <p>Cantidad: {{ cart_details.quantity }}</p>
+            <p>Precio Total: ${{ cart_details.total_price }}</p>
+            <!-- Puedes agregar más detalles del producto si lo deseas -->
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Agregar la suma total -->
+    <p>Suma Total: ${{ total_price_sum }}</p>
+
+    <!-- Agregar el botón para finalizar la compra -->
+   
     {% else %}
-        <p>No hay productos en el carrito.</p>
+    <p>No hay productos en el carrito.</p>
     {% endif %}
 </body>
+
 </html>

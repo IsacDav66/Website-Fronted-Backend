@@ -6,6 +6,8 @@ from src.entities.productosEntity import ProductoEntity
 from flask import flash, redirect, request, render_template, url_for, session
 from src.entities.ventasEntity import VentasEntity
 from src.models.ventasModel import VentasModel
+from src.models.cartDetailsModel import CartDetailsModel  # Agregamos el modelo para el carrito
+from src.models.cartModel import CartModel
 
 class ProductosController(BaseController):
     def __init__(self, app):
@@ -15,10 +17,17 @@ class ProductosController(BaseController):
         self.app.route('/productos', methods=['GET', 'POST'])(self.productos)
         self.app.route('/productos/<int:producto_id>')(self.get_productos_description)
         self.app.route('/productos/add', methods=['POST'])(self.add_producto)
-        self.app.route('/productos/agregar_al_carrito/<int:producto_id>', methods=['POST'])(self.agregar_al_carrito)  # Agrega esta línea
-        self.app.route('/carrito')(self.ver_carrito)
+        self.app.route('/productos/agregar_al_carrito/<int:producto_id>', methods=['POST'])(self.agregar_al_carrito)
+        self.app.route('/carrito', methods=['GET', 'POST'])(self.ver_carrito)
+        self.app.route('/total_productos')(self.calcular_total)
+        self.totalU = 0 
+        self.app.route('/productos/carrito_calculo/<int:producto_id>', methods=['GET', 'POST'])(self.carrito_calculo)
+        self.app.route('/productos/comprar', methods=['POST'])(self.comprar)
+
+    #?Se usa para mostrar los productos en la pagina e insertar en postman
     def productos(self):
         try:
+            #? Creo que se usa para insertar desde un formulario por ejmp
             if request.method == 'POST':
                 nombre = request.form['nombre']
                 descripcion = request.form['descripcion']
@@ -52,6 +61,8 @@ class ProductosController(BaseController):
 
         return render_template('productos.html')
 
+
+    #? Se usa para llamada con Postman
     def get_productos_description(self, producto_id):
         producto_data = self.productos_model.get_producto_by_id(producto_id)
 
@@ -62,6 +73,7 @@ class ProductosController(BaseController):
 
         return producto_description
 
+    #? Se usa para agregar con Postman con ID
     def add_producto(self):
         try:
             if request.method == 'POST':
@@ -81,6 +93,27 @@ class ProductosController(BaseController):
             flash(f'Error: {str(error)}', 'error')
             return jsonify({'error': str(error)}), 500
         
+        
+    
+    
+    def carrito_calculo(self, producto_id):
+        cantidad = int(request.form.get('cantidad', 1))  # Obtener la cantidad del formulario
+        producto_data = self.productos_model.get_producto_by_id(producto_id)
+        
+        total_producto_actual = cantidad * float(producto_data[3])
+        self.totalU += total_producto_actual  # Acumula el total
+
+        print("TOTAL ES IGUAL =", cantidad, producto_data, total_producto_actual)
+        return redirect(url_for('productos'))  # Redirigir a la lista de productos
+    
+    def calcular_total(self):
+        print(self.totalU)
+        return jsonify({'Total': self.totalU}), 201
+        
+        
+        
+    ####--------------------------------------------------
+    #? Usa CartModel (create_car)  - ProductoModel (get_producto_by_id)
     def agregar_al_carrito(self, producto_id):
         try:
             if 'username' not in session:
@@ -88,27 +121,64 @@ class ProductosController(BaseController):
                 return redirect(url_for('login'))
 
             username = session['username']
-            producto_data = self.productos_model.get_producto_by_id(producto_id)
-            producto_id = producto_data[0]
+            cantidad = int(request.form.get('cantidad', 1))
 
-            if producto_data:
-                cantidad = 1
-                precio_total = cantidad * producto_data[3]
+            # Verificar si el usuario ya tiene un carrito
+            cart_id = CartModel.get_cart_id(username)
 
-                venta_entity = VentasEntity(username=username, producto_id=producto_id,
-                                            cantidad=cantidad, precio_total=precio_total, en_carrito=True)
+            # Si no tiene carrito, créalo
+            if not cart_id:
+                cart_id = CartModel.create_cart(username)
 
-                if VentasModel.insert_venta(**venta_entity.to_dict()):
+            if cart_id:
+                producto_data = self.productos_model.get_producto_by_id(producto_id)
+
+                if producto_data:
+                    precio_total = cantidad * producto_data[3]
+                    CartDetailsModel.add_to_cart(cart_id, producto_id, cantidad, precio_total, username=username, is_purchased=False)
                     flash('Producto agregado al carrito correctamente.', 'success')
                 else:
-                    flash('Error al agregar producto al carrito.', 'error')
+                    flash('Error al obtener información del producto.', 'error')
+            else:
+                flash('Error al crear el carrito.', 'error')
 
         except Exception as error:
             print(f'Error: {str(error)}')
             flash(f'Error: {str(error)}', 'error')
 
-        return redirect(url_for('ver_carrito'))
+        return redirect(url_for('productos'))
+
     
+    
+    def comprar(self):
+        try:
+            if 'username' not in session:
+                flash('Debes iniciar sesión para realizar una compra.', 'error')
+                return redirect(url_for('login'))  # Reemplaza 'login' con la ruta real de inicio de sesión
+
+            username = session['username']
+
+            # Obtener el cart_id del usuario
+            cart_id = CartModel.get_cart_id(username)
+
+            if cart_id:
+                # Marcar el carrito como comprado
+                CartDetailsModel.mark_cart_as_purchased(cart_id)
+
+                flash('Compra realizada con éxito. ¡Gracias por tu compra!', 'success')
+                return render_template('confirmacion_compra.html')
+
+            else:
+                flash('No hay productos en tu carrito para comprar.', 'error')
+
+        except Exception as error:
+            print(f'Error al realizar la compra: {str(error)}')
+            flash(f'Error al realizar la compra: {str(error)}', 'error')
+
+        return redirect(url_for('productos'))  # Redirigir a la lista de productos
+
+
+
     def ver_carrito(self):
         try:
             if 'username' not in session:
@@ -117,10 +187,20 @@ class ProductosController(BaseController):
 
             username = session['username']
 
-            # Obtener los productos en el carrito del usuario desde la base de datos
-            productos_carrito = VentasModel.get_productos_en_carrito(username)
+            # Obtener el cart_id del usuario
+            cart_id = CartModel.get_cart_id(username)
 
-            return render_template('carrito.html', productos_carrito=productos_carrito)
+            if cart_id:
+                # Obtener la suma de total_price para el carrito actual
+                total_price_sum = CartDetailsModel.sum_total_price(cart_id)
+
+                # Obtener los productos en el carrito del usuario desde la base de datos
+                productos_en_carrito = CartDetailsModel.get_productos_en_carrito(username)
+
+                return render_template('carrito.html', productos_en_carrito=productos_en_carrito, total_price_sum=total_price_sum, username=username)
+
+            else:
+                flash('No hay productos en tu carrito.', 'error')
 
         except Exception as error:
             print(f'Error: {str(error)}')

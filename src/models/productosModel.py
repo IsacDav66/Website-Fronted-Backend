@@ -4,7 +4,7 @@ from flask import Blueprint, redirect, render_template, session
 
 from src.cn.data_base_connection import get_database_connection
 from flask import current_app as app
-
+from src.entities.cartDetailsEntity import cartDetailsEntity
 class ProductoModel:
     def __init__(self, app, prefix):
         self.app = app
@@ -12,6 +12,8 @@ class ProductoModel:
         self.blueprint = Blueprint(self.prefix, __name__)
         
     
+    #?Se usa para insertar en postman
+
     def insert_producto(entity):
         try:
             conn = get_database_connection(app)
@@ -29,6 +31,8 @@ class ProductoModel:
             if conn is not None:
                 conn.close()
             pass
+
+     #?Se usa para mostrar los productos en la pagina
 
     def get_productos():
         try:
@@ -50,7 +54,7 @@ class ProductoModel:
                 conn.close()
                 
                 
-  
+    #? Se usa para llamada con Postman
     def get_producto_by_id(self, producto_id):
         # Conéctate a la base de datos y realiza una consulta SQL
         connection = get_database_connection(self.app)
@@ -64,6 +68,10 @@ class ProductoModel:
 
         print(f'Producto Data: {producto_data}')  # Agrega esta línea para verificar la salida
         return producto_data
+    
+    
+    
+    
     
     def add_producto(self, nombre, descripcion, precio, imagen):
         try:

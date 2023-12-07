@@ -14,6 +14,8 @@ from src.controllers.comentariosController import ComentariosController
 from src.cn.data_base_connection import initialize_database
 from src.controllers.productosController import ProductosController
 from src.models.productosModel import ProductoModel
+#from src.controllers.carritoController import CarritoController
+
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -63,6 +65,9 @@ app.register_blueprint(comentarios_controller.get_blueprint(), url_prefix='/come
 
 productos_controller = ProductosController(app)
 app.register_blueprint(productos_controller.get_blueprint(), url_prefix= '/productos')
+
+#carrito_controller = CarritoController(app)
+#app.register_blueprint(carrito_controller.get_blueprint(), url_prefix= '/productos')
 
 
     
