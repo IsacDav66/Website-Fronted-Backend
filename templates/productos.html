@@ -9,16 +9,20 @@
 </head>
 
 <body>
-    <a href="{{ url_for('ver_carrito') }}">Ir al Carrito</a>
-    <h1>{{cart_id}}</h1>
+
+    {% if cart_id %}
+    <p>Tu sesion es : {{cart_id}}</p>
+    {% else %}
+    <p>No hay una sesion activa</p>
+    {% endif %}
+
+
     {% if username %}
     <p>Bienvenido, {{ username }}!</p>
     {% else %}
     <p>Bienvenido al sitio web!</p>
     {% endif %}
-    <form method="post" action="{{ url_for('comprar') }}">
-        <button type="submit">Finalizar Compra</button>
-    </form>
+
 
     <form method="post" action="{{ url_for('ver_carrito') }}">
         <button type="submit">Finalizar Compra en carrito</button>

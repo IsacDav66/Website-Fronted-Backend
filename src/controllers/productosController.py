@@ -196,6 +196,7 @@ class ProductosController(BaseController):
                 # Obtener la suma de total_price para el carrito actual
                 total_price_sum = CartDetailsModel.sum_total_price(cart_id)
                 print("Total de la compra ->:", total_price_sum)
+
                 # Obtener los productos en el carrito del usuario desde la base de datos
                 productos_en_carrito = CartDetailsModel.get_productos_en_carrito(cart_id)
 

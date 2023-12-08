@@ -78,7 +78,10 @@ class CartDetailsModel:
             cursor = conn.cursor()
 
             cursor.execute("""
-                SELECT * FROM cart_details WHERE cart_id = %s
+                SELECT cd.id, cd.cart_id, cd.product_id, cd.quantity, cd.total_price, cd.username, cd.is_purchased_cart, p.nombre, p.imagen
+                FROM cart_details cd
+                JOIN productos p ON cd.product_id = p.id
+                WHERE cd.cart_id = %s;
             """, (cart_id,))
 
             productos_en_carrito = cursor.fetchall()
@@ -95,7 +98,7 @@ class CartDetailsModel:
         finally:
             if conn is not None:
                 conn.close()
-                
+                    
                 
                 
         # ... (otro código en CartDetailsModel)

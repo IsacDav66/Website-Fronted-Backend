@@ -6,10 +6,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AWvSwIPiZbT5V-E6LyjVQsBSjUp7LBfTMANUlVFb__YKctQW4LUoFl_uMrSKtyfQcG2XUF47yn4kCsks&currency=USD">
+        </script>
 </head>
 
 <body>
-    <h1>{{cart_id}}</h1>
+
+    {% if cart_id %}
+    <p>Tu sesion es : {{cart_id}}</p>
+    {% else %}
+    <p>No hay una sesion activa</p>
+    {% endif %}
+
+    
     {% if username %}
     <p>Bienvenido, {{ username }}!</p>
     {% else %}
@@ -17,28 +27,61 @@
     {% endif %}
     <h1>Carrito de Compras</h1>
 
-    {% if productos_en_carrito %}
-    <ul>
-        {% for cart_details in productos_en_carrito %}
-        <li>
-            <strong>Producto ID: {{ cart_details.product_id }}</strong>
-            <p>Cantidad: {{ cart_details.quantity }}</p>
-            <p>Precio Total: ${{ cart_details.total_price }}</p>
-            <!-- Puedes agregar más detalles del producto si lo deseas -->
-        </li>
-        {% endfor %}
-    </ul>
+
+    
+{% if productos_en_carrito %}
+<ul>
+    {% for cart_details in productos_en_carrito %}
+    <li>
+        <strong>Producto: {{ cart_details.nombre }}</strong>
+        <img src="{{cart_details.imagen}}" alt="">
+        <p>Cantidad: {{ cart_details.quantity }}</p>
+        <p>Precio Total: ${{ cart_details.total_price }}</p>
+        <!-- Puedes agregar más detalles del producto si lo deseas -->
+    </li>
+    {% endfor %}
+</ul>
+
 
     <!-- Agregar la suma total -->
     <p>Suma Total: ${{ total_price_sum }}</p>
 
     <!-- Agregar el botón para finalizar la compra -->
-   <form method="post" action="{{ url_for('finalizar_compra') }}">
-        <button type="submit">Finalizar Compra</button>
-    </form>
-    {% else %}
+   
+{% else %}
     <p>No hay productos en el carrito.</p>
-    {% endif %}
+{% endif %}
+
+    
+    <div id="paypal-button-conteiner"></div>
+    <script>
+        paypal.Buttons({
+            style: {
+                color: 'blue',
+                shape: 'pill',
+                label: 'pay'
+            },
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: {{total_price_sum}}
+                        }
+                    }]
+                })
+            },
+            onApprove: function (data, actions) {
+                actions.order.capture().then(function (detalles) {
+                    window.location.href = "{{ url_for('finalizar_compra') }}"
+                });
+
+            },
+            onCancel: function (data) {
+                alert("Pago cancelado");
+                console.log(data)
+            }
+        }).render('#paypal-button-conteiner');
+    </script>
 
     <!-- templates/carrito.html -->
     <!-- ... (contenido previo) -->
