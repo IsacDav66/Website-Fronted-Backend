@@ -23,6 +23,7 @@ class ProductosController(BaseController):
         self.totalU = 0 
         self.app.route('/productos/carrito_calculo/<int:producto_id>', methods=['GET', 'POST'])(self.carrito_calculo)
         self.app.route('/productos/comprar', methods=['POST'])(self.comprar)
+        self.app.route('/historial_compras', methods=['GET', 'POST'])(self.finalizar_compra)
 
     #?Se usa para mostrar los productos en la pagina e insertar en postman
     def productos(self):
@@ -49,7 +50,8 @@ class ProductosController(BaseController):
 
                 username = session.get('username', None)
                 if username is not None:
-                    return render_template('productos.html', productos=productos, username=username)
+                    cart_id = CartModel.get_cart_id(username)
+                    return render_template('productos.html', productos=productos, username=username, cart_id= cart_id)
                 else:
                     flash('Debes iniciar sesión para ver los productos.', 'error')
                     return redirect(url_for('login'))  # Reemplaza 'login' con la ruta real de inicio de sesión
@@ -126,8 +128,8 @@ class ProductosController(BaseController):
             # Verificar si el usuario ya tiene un carrito
             cart_id = CartModel.get_cart_id(username)
 
-            # Si no tiene carrito, créalo
-            if not cart_id:
+            # Si no tiene carrito o el carrito ya fue comprado, créalo
+            if not cart_id or CartModel.is_cart_purchased(cart_id):
                 cart_id = CartModel.create_cart(username)
 
             if cart_id:
@@ -135,7 +137,7 @@ class ProductosController(BaseController):
 
                 if producto_data:
                     precio_total = cantidad * producto_data[3]
-                    CartDetailsModel.add_to_cart(cart_id, producto_id, cantidad, precio_total, username=username, is_purchased=False)
+                    CartDetailsModel.add_to_cart(cart_id, producto_id, cantidad, precio_total, username=username, is_purchased_cart=False)
                     flash('Producto agregado al carrito correctamente.', 'success')
                 else:
                     flash('Error al obtener información del producto.', 'error')
@@ -193,11 +195,11 @@ class ProductosController(BaseController):
             if cart_id:
                 # Obtener la suma de total_price para el carrito actual
                 total_price_sum = CartDetailsModel.sum_total_price(cart_id)
-
+                print("Total de la compra ->:", total_price_sum)
                 # Obtener los productos en el carrito del usuario desde la base de datos
-                productos_en_carrito = CartDetailsModel.get_productos_en_carrito(username)
+                productos_en_carrito = CartDetailsModel.get_productos_en_carrito(cart_id)
 
-                return render_template('carrito.html', productos_en_carrito=productos_en_carrito, total_price_sum=total_price_sum, username=username)
+                return render_template('carrito.html', productos_en_carrito=productos_en_carrito, total_price_sum=total_price_sum, username=username, cart_id=cart_id)
 
             else:
                 flash('No hay productos en tu carrito.', 'error')
@@ -206,3 +208,27 @@ class ProductosController(BaseController):
             print(f'Error: {str(error)}')
             flash(f'Error: {str(error)}', 'error')
             return redirect(url_for('carrito')), 500
+        
+        
+        
+    def finalizar_compra(self):
+        try:
+            username = session['username']
+
+            # Obtener el cart_id del usuario
+            cart_id = CartModel.get_cart_id(username)
+
+            if cart_id:
+                # Finalizar la compra actualizando is_purchased en la tabla carts
+                CartModel.finalizar_compra(cart_id)
+
+                flash('Compra finalizada correctamente.', 'success')
+
+            else:
+                flash('No hay productos en tu carrito.', 'error')
+
+        except Exception as error:
+            print(f'Error: {str(error)}')
+            flash(f'Error: {str(error)}', 'error')
+
+        return render_template('historial_compras.html',username=username)

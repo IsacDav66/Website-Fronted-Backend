@@ -46,15 +46,15 @@ class CartDetailsModel:
                 conn.close()
 
     @staticmethod
-    def add_to_cart(cart_id, product_id, quantity, total_price, username, is_purchased):
+    def add_to_cart(cart_id, product_id, quantity, total_price, username, is_purchased_cart):
         try:
             conn = get_database_connection(app)
             cursor = conn.cursor()
 
             cursor.execute("""
-                INSERT INTO cart_details (cart_id, product_id, quantity, total_price, username, is_purchased)
+                INSERT INTO cart_details (cart_id, product_id, quantity, total_price, username, is_purchased_cart)
                 VALUES (%s, %s, %s, %s, %s, %s)
-            """, (cart_id, product_id, quantity, total_price, username, is_purchased))
+            """, (cart_id, product_id, quantity, total_price, username, is_purchased_cart))
 
             conn.commit()
             cursor.close()
@@ -72,14 +72,14 @@ class CartDetailsModel:
                 
                 
                 
-    def get_productos_en_carrito(username):
+    def get_productos_en_carrito(cart_id):
         try:
             conn = get_database_connection(app)
             cursor = conn.cursor()
 
             cursor.execute("""
-                SELECT * FROM cart_details WHERE username = %s
-            """, (username,))
+                SELECT * FROM cart_details WHERE cart_id = %s
+            """, (cart_id,))
 
             productos_en_carrito = cursor.fetchall()
 
@@ -140,6 +140,13 @@ class CartDetailsModel:
 
             total_price_sum = cursor.fetchone()[0]
 
+            # Actualizar total_price en la tabla carts
+            cursor.execute("""
+                UPDATE carts SET total_price = %s
+                WHERE cart_id = %s;
+            """, (total_price_sum, cart_id))
+
+            conn.commit()
             cursor.close()
 
             return total_price_sum

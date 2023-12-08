@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <h1>{{cart_id}}</h1>
     {% if username %}
     <p>Bienvenido, {{ username }}!</p>
     {% else %}
@@ -32,10 +33,15 @@
     <p>Suma Total: ${{ total_price_sum }}</p>
 
     <!-- Agregar el botón para finalizar la compra -->
-   
+   <form method="post" action="{{ url_for('finalizar_compra') }}">
+        <button type="submit">Finalizar Compra</button>
+    </form>
     {% else %}
     <p>No hay productos en el carrito.</p>
     {% endif %}
+
+    <!-- templates/carrito.html -->
+    <!-- ... (contenido previo) -->
 </body>
 
 </html>

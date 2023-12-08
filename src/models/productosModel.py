@@ -1,4 +1,3 @@
-
 # src/models/productosModel.py
 from flask import Blueprint, redirect, render_template, session
 
