@@ -14,6 +14,7 @@ from src.controllers.comentariosController import ComentariosController
 from src.cn.data_base_connection import initialize_database
 from src.controllers.productosController import ProductosController
 from src.models.productosModel import ProductoModel
+from src.controllers.asistenteController import AsistenteController
 #from src.controllers.carritoController import CarritoController
 
 
@@ -69,7 +70,8 @@ app.register_blueprint(productos_controller.get_blueprint(), url_prefix= '/produ
 #carrito_controller = CarritoController(app)
 #app.register_blueprint(carrito_controller.get_blueprint(), url_prefix= '/productos')
 
-
+asistente_controller = AsistenteController(app)
+app.register_blueprint(asistente_controller.get_blueprint(), url_prefix= '/asistente')
     
 
 

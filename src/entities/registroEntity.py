@@ -10,9 +10,10 @@
 import json
 
 class RegistroEntity:
-    def __init__(self, username=None, password=None):
+    def __init__(self, username=None, password=None, email=None):
         self.username = username
         self.password = password
-
+        self.email = email
+        
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)

@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body{
+    background-color: #ADD8E6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.contenedor-principal{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1100px;
+    height: 600px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.30);
+}
+
+/*
+! Todo el diseño de las imagenes
+*/
+
+.contenedor-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88%;
+    height: 88%;
+}
+
+.contenedor-img{
+    width: 55%;
+    height: 100%;
+}
+
+.img-principal{
+    width: auto;
+    max-width: 100%;
+    min-width: 20%;
+    position: absolute;
+}
+
+.logo{
+    width: 40%;
+}
+
+#mostrar{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#bloquear{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+h1{
+    margin-top: 10px;
+    color: #FFB6C1;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(254, 47, 47, 0.53);
+    font-family: 'Fredoka';
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+h4{
+    color: #fff;
+    text-align: center;
+    font-family: 'Happy Monkey';
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 15px;
+}
+
+.contenedor-interior{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contenedor-formulario{
+    width: 45%;
+}
+
+/*
+! Todo el diseño del formulario
+*/
+
+.contenedor-formulario{
+    background-color: #FFB6C1;
+    width: 45%;
+    height: 100%;
+    border-radius: 0px 30px 30px 0px;
+    -webkit-border-radius: 0px 30px 30px 0px;
+    -moz-border-radius: 0px 30px 30px 0px;
+    -ms-border-radius: 0px 30px 30px 0px;
+    -o-border-radius: 0px 30px 30px 0px;
+    border-top: 5px solid rgba(7, 49, 112, 0.40);
+    border-right: 5px solid rgba(7, 49, 112, 0.40);
+    border-bottom: 5px solid rgba(7, 49, 112, 0.40);
+    background-color: rgba(173, 216, 230, 0.40);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.elegir-opcion{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #0067A0;
+    text-align: center;
+    font-family: 'Dongle';
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    padding: 30px;
+}
+
+.select-visible{
+    width: 40px;
+    height: 5px;
+    background-color: #0067A0;
+    border-radius: 20%;
+    -webkit-border-radius: 20%;
+    -moz-border-radius: 20%;
+    -ms-border-radius: 20%;
+    -o-border-radius: 20%;
+    position: relative;
+    bottom: 5px;
+}
+
+/*DISPLAY HIDDEN PARA SELECCIONAR OPCIONES*/
+.select-invisible{
+    display: none;
+}
+
+.cont-log{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+}
+
+.cont-log > a:hover{
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
+
+.cont-log > a{
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    text-decoration: none;
+}
+
+.cont-reg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 30%;
+    display: flex;
+    justify-content: start;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+}
+
+.cont-reg >a:hover{
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
+
+.cont-reg > a{
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    text-decoration: none;
+}
+
+.formulario{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-top: 35px;
+}
+
+.datos{
+    width: 83%;
+}
+
+.icon{
+    width: 100%;
+}
+
+.icon-password{
+    cursor: pointer;
+}
+
+label{
+    width: 17%;
+}
+
+.user{
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-bottom: 3px solid rgba(7, 49, 112, 0.60);
+    background-color: #fff;
+    display: flex;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+}
+
+.user:hover{
+    background-color:#0068a04d;
+}
+
+.password{
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-bottom: 3px solid rgba(7, 49, 112, 0.60);
+    background-color: #fff;
+    display: flex;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+}
+
+.password:hover{
+    background-color: #0068a04d;
+}
+
+.email{
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-bottom: 3px solid rgba(7, 49, 112, 0.60);
+    background-color: #fff;
+    display: flex;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+}
+
+.email:hover{
+    background-color: #0068a04d;
+}
+
+.datos{
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+}
+
+.datos:focus{
+    box-shadow: 0px 0px 20px -2px rgba(0, 0, 0, 0.459);
+    background-color: rgb(214, 243, 253)
+}
+
+.ingresar{
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.40);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: rgba(53, 73, 255, 0.46);
+    color: white;
+    font-family: 'Baloo 2';
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingresar:hover{
+    font-size: 21px;
+    background-color: rgba(7, 49, 112, 0.60);
+    border-bottom: 3px solid rgba(122, 164, 223, 0.925)
+}
+
+.datos{
+    padding-left: 13px;
+    padding-top: 4px;
+    font-family: 'Baloo 2';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: none;
+    outline: none;
+}
+
+.datos::placeholder{
+    color: rgba(0, 0, 0, 0.35);
+}

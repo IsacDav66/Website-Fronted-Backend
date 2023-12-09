@@ -13,12 +13,12 @@ from flask import current_app as app
 
 class RegistroModel:
     @staticmethod
-    def register_user(username, password):
+    def register_user(username, password, email):
         try:
             connection = get_database_connection(app)
             cursor = connection.cursor()
 
-            cursor.execute("INSERT INTO usuarios (username, password) VALUES (%s, %s)", (username, password))
+            cursor.execute("INSERT INTO usuarios (username, password, email) VALUES (%s, %s, %s)", (username, password, email))
             connection.commit()
             print("Se registró correctamente")
             return True
