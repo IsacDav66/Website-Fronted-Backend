@@ -1,6 +1,6 @@
 //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
 
-const API_KEY = "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";
+const API_KEY = "API_KEY";
 
 // Información predefinida
 const predefinedInfo = "Para ingresar a la pagina web debe ingresar al link comidarapida.com ";

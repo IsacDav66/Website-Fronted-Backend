@@ -1,0 +1,5 @@
+"cart_id","username","created_at","product_id","total_price","is_purchased_cart"
+1,Isac,2024-03-24 11:14:50.095 -0500,,129.96,true
+2,Isac,2024-03-24 11:25:52.955 -0500,,185.94,true
+3,Isac,2024-03-24 11:28:12.143 -0500,,201.96,true
+4,David,2024-03-24 11:30:15.586 -0500,,209.97,true

@@ -1,0 +1,10 @@
+"id","nombre","descripcion","precio","imagen","categoria"
+1,Pastel de Nuez,Pastel fresco,69.99,static/web/img/Compras/especial1.png,
+3,Pastel de Fresa,Pastel fresco,20.99,static/web/img/Compras/especial2.png,
+4,Pastel de Mango,Pastel fresco,50.99,static/web/img/Compras/especial3.png,
+5,Pastel de Cereza,Pastel fresco,30.99,static/web/img/Compras/especial4.png,
+7,Pastel de Manzana,Pastel fresco,59.99,static/web/img/Compras/especial5.png,
+8,Pastel de Navideño,Pastel fresco,10.99,static/web/img/Compras/especial6.png,
+9,Pastel de Granadilla,Pastel fresco,69.99,static/web/img/Compras/bodas1.png,
+6,Pastel de Lucuma,Pastel fresco,30.99,static/web/img/Compras/bodas2.png,
+2,Pastel de Chocolate,Pastel fresco,19.99,static/web/img/Compras/bodas3.png,
