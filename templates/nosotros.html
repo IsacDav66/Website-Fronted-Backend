@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/web/css/nosotros.css">
     <link type="image/png" rel="icon" href="img/logo/Dulces promesas.jpg">
+    
     <title>Nosotros</title>
 </head>
 <body>
@@ -21,17 +22,25 @@
 
                  <a href="{{ url_for('login') }}"><img src="/static/web/img/perfil.png" class="perfil" alt="perfil"></a>
                 <i class='bx bx-chevron-down bx-md'></i>
-
+                <div class="perfil-name">
+                    {% if username %}
+                    <p>Bienvenido, {{ username }}!</p>
+                    {% else %}
+                    <p>Bienvenido al sitio web!</p>
+                    {% endif %}
+                </div>
             </section>
 
             <nav>
 
                 <ul class="direcciones">
                     <li><a href="{{ url_for('index.index') }}">Inicio</a></li>
-                    <li><a href="{{ url_for('compras') }}">Pedidos Online</a></li>
+                    <!--<li><a href="{{ url_for('compras') }}">Pedidos Online</a></li>-->
                     <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
                     <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
                     <li><a href="{{ url_for('comentarios') }}">Comentarios</a></li>
+                    <li><a href="{{ url_for('productos') }}">Productos</a></li>
+                    <li><a href="{{ url_for('asistente') }}">Asistente</a></li>
                 </ul>
 
             </nav>

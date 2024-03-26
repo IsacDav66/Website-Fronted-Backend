@@ -21,11 +21,13 @@
 
                 <a href="{{ url_for('login') }}"><img src="/static/web/img/perfil.png" class="perfil" alt="perfil"></a>
                 <i class='bx bx-chevron-down bx-md'></i>
-                {% if username %}
-                <p>Bienvenido, {{ username }}!</p>
-                {% else %}
-                <p>Bienvenido al sitio web!</p>
-                {% endif %}
+                <div class="perfil-name">
+                    {% if username %}
+                    <p>Bienvenido, {{ username }}!</p>
+                    {% else %}
+                    <p>Bienvenido al sitio web!</p>
+                    {% endif %}
+                </div>
 
             </section>
 
@@ -33,7 +35,7 @@
 
                 <ul class="direcciones">
                     <li><a href="{{ url_for('index.index') }}">Inicio</a></li>
-                    <li><a href="{{ url_for('compras') }}">Pedidos Online</a></li>
+                    <!--<li><a href="{{ url_for('compras') }}">Pedidos Online</a></li>-->
                     <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
                     <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
                     <li><a href="{{ url_for('comentarios') }}">Comentarios</a></li>

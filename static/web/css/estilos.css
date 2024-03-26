@@ -477,3 +477,10 @@ footer{
     -webkit-filter: brightness(70%);
 }
 
+
+.perfil-name{
+       font-size: 19px;
+    font-family: 'Jost';
+    color: #5f5f5f;
+ 
+}
