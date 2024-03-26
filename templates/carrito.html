@@ -5,6 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/web/css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+    <!--<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">-->
+    <link type="image/png" rel="icon" href="img/logo/Dulces promesas.jpg">
+    <link rel="stylesheet" href="/static/web/css/productos.css">
     <title>Carrito de Compras</title>
     <script
         src="https://www.paypal.com/sdk/js?client-id=AWvSwIPiZbT5V-E6LyjVQsBSjUp7LBfTMANUlVFb__YKctQW4LUoFl_uMrSKtyfQcG2XUF47yn4kCsks&currency=USD">
@@ -12,77 +21,129 @@
 </head>
 
 <body>
-
-    {% if cart_id %}
-    <p>Tu sesion es : {{cart_id}}</p>
-    {% else %}
-    <p>No hay una sesion activa</p>
-    {% endif %}
-
+    <header data-aos="fade-down" data-aos-duration="2000">
+        <article class="contHeader">
+            <section class="perfilHeader">
     
-    {% if username %}
-    <p>Bienvenido, {{ username }}!</p>
-    {% else %}
-    <p>Bienvenido al sitio web!</p>
-    {% endif %}
-    <h1>Carrito de Compras</h1>
-
-
+                <a href="{{ url_for('login') }}"><img src="/static/web/img/perfil.png" class="perfil" alt="perfil"></a>
+                <i class='bx bx-chevron-down bx-md'></i>
     
+                <div class="perfil-name">
+                    {% if username %}
+                    <p>Bienvenido, {{ username }}!</p>
+                    {% else %}
+                    <p>Bienvenido al sitio web!</p>
+                    {% endif %}
+                </div>
+            </section>
+    
+            <nav>
+    
+                <ul class="direcciones">
+                    <li><a href="{{ url_for('index.index') }}">Inicio</a></li>
+                    <!--<li><a href="{{ url_for('compras') }}">Pedidos Online</a></li>-->
+                    <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                    <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
+                    <li><a href="{{ url_for('comentarios') }}">Comentarios</a></li>
+                    <li><a href="{{ url_for('productos') }}">Productos</a></li>
+                    <li><a href="{{ url_for('asistente') }}">Asistente</a></li>
+    
+    
+                </ul>
+    
+            </nav>
+    
+            <section class="redesHeader">
+    
+                <div class="redes">
+                    <a href="https://www.facebook.com/profile.php?id=61551121165907" target="_blank"><i
+                            class='bx bxl-facebook bx-sm'></i></a>
+                    <a href="#"><i class='bx bxl-whatsapp bx-sm'></i></a>
+                    <a href="#"><i class='bx bxl-pinterest-alt bx-sm'></i></a>
+                    <a target="_blank"
+                        href="https://www.instagram.com/dulces_promesas_oficial/?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"><i
+                            class='bx bxl-instagram bx-sm'></i></a>
+                </div>
+            </section>
+        </article>
+    
+    </header>
+    <div class="contLine" data-aos="fade-down" data-aos-duration="2000">
+        <div class="linea"></div>
+    </div>
+
+<div class="contenedor-global">
+
+
+
+    <article class="titulo">
+        <h1>Carrito de compras</h1>
+    </article>
+    <div class="sesion">
+        {% if cart_id %}
+        <p>Número de compra : {{cart_id}}</p>
+        {% else %}
+        <p>Sin número de compra</p>
+        {% endif %}
+    </div>
+
+
+ 
+    
+
 {% if productos_en_carrito %}
-<ul>
+<div class="sup-producto">
     {% for cart_details in productos_en_carrito %}
-    <li>
+    <div class="productos-listado-2">
         <strong>Producto: {{ cart_details.nombre }}</strong>
-        <img src="{{cart_details.imagen}}" alt="">
+        <img class="producto-imagen" src="{{cart_details.imagen}}" alt="">
         <p>Cantidad: {{ cart_details.quantity }}</p>
         <p>Precio Total: ${{ cart_details.total_price }}</p>
         <!-- Puedes agregar más detalles del producto si lo deseas -->
-    </li>
+    </div>
     {% endfor %}
-</ul>
+</div>
 
 
     <!-- Agregar la suma total -->
-    <p>Suma Total: ${{ total_price_sum }}</p>
-
-    <!-- Agregar el botón para finalizar la compra -->
-   
-{% else %}
-    <p>No hay productos en el carrito.</p>
-{% endif %}
-
+    <div class="sesion">
+        <p>Suma Total: ${{ total_price_sum }}</p>
+        {% else %}
+        <p>No hay productos en el carrito.</p>
+        {% endif %}
+    </div>
     
-    <div id="paypal-button-conteiner"></div>
-    <script>
-        paypal.Buttons({
-            style: {
-                color: 'blue',
-                shape: 'pill',
-                label: 'pay'
-            },
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: {{total_price_sum}}
-                        }
-                    }]
-                })
-            },
-            onApprove: function (data, actions) {
-                actions.order.capture().then(function (detalles) {
-                    window.location.href = "{{ url_for('finalizar_compra') }}"
-                });
+    <div class="sup-button-paypal">
+        <div id="paypal-button-conteiner"></div>
+            <script>
+                paypal.Buttons({
+                    style: {
+                        color: 'blue',
+                        shape: 'pill',
+                        label: 'pay'
+                    },
+                    createOrder: function (data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: {{total_price_sum}}
+                                }
+                            }]
+                        })
+                    },
+                    onApprove: function (data, actions) {
+                        actions.order.capture().then(function (detalles) {
+                            window.location.href = "{{ url_for('finalizar_compra') }}"
+                        });
 
-            },
-            onCancel: function (data) {
-                alert("Pago cancelado");
-                console.log(data)
-            }
-        }).render('#paypal-button-conteiner');
-    </script>
-
+                    },
+                    onCancel: function (data) {
+                        alert("Pago cancelado");
+                        console.log(data)
+                    }
+                }).render('#paypal-button-conteiner');
+            </script>
+    </div>
     <!-- templates/carrito.html -->
     <!-- ... (contenido previo) -->
 </body>
