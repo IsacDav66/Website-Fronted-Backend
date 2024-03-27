@@ -5,37 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/login/Dulces promesas.jpg" />
-    <link rel="stylesheet" href="/static/web/css/login.css">
+    <link rel="stylesheet" href="/static/web/css/login2.css">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="572940261909-sdkgkduojsuucvb05o2iesop6o21cnhb.apps.googleusercontent.com">
+    <meta name="google-signin-client_id"
+        content="572940261909-sdkgkduojsuucvb05o2iesop6o21cnhb.apps.googleusercontent.com">
     <title>Bienvenio/a - Dulces Promesas</title>
 </head>
 
 <body>
+    <button type="submit" class="boton-atras">
+        <a href="{{ url_for('index.index') }}">
+        <img class="send" src="static\web\img\svg\Move-Back--Streamline-Ultimate.svg" alt="Iniciar Sesión"></a>
+    </button>
 
-    <!--
-    Imagenes Presentación
--->
-
-    <section class="contenedor-principal">
-
-
-        <article class="contenedor-login">
-
-            <section class="contenedor-img">
-                <img class="img-principal" src="/static/web/img/img login/login/Fondo.png" alt="">
-                <div class="contenedor-interior">
-                    <h1>Bienvenid@ <br> nuevamente</h1>
-                    <img class="logo" src="/static/web/img/img login/login/logo.png" alt="loguito :D">
-                    <h4>El delicioso sabor de nuestros <br> mejores momentos</h4>
-                </div>
-            </section>
-            <!--
-    Formulario
--->
-            <section class="contenedor-formulario">
                 <form method="POST" action="/login">
                     <div class="elegir-opcion">
+                        
                         <div class="cont-log"><a href="{{ url_for('login') }}">
                                 <p>Logeate</p>
                             </a>
@@ -55,46 +40,34 @@
                             <label for="username"><img class="icon icon-user"
                                     src="/static/web/img/img login/login/usuario.png" alt=""></label>
                         </div>
+                         <br>
                         <div class="password">
                             <input id="password" name="password" class="datos" type="password"
                                 placeholder="Ingresar contraseña">
                             <label id="botonClave" for="password">
                                 <div id="bloquear"><img class="icon icon-password"
                                         src="/static/web/img/img login/login/bloquear.png" alt=""></div>
-                                <div id="mostrar"><img src="/static/web/img/img login/register/candado-abierto.png" alt="">
+                                <div id="mostrar"><img src="/static/web/img/img login/register/candado-abierto.png"
+                                        alt="">
                                 </div>
                             </label>
-                            <input type="submit" value="Iniciar Sesión">
-                            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                        </div>
+                            
+                        <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>-->
+                    </div>
+                    <br>
+                        <button type="submit" class="boton-enviar">
+                        <img class="send" src="static\web\img\svg\Log-Out-Square-1--Streamline-Nova.svg" alt="Iniciar Sesión">
+                        </button>
                 </form>
 
             </section>
-                            
 
         </article>
 
     </section>
-                               
-                                
-                                
-                                <script>
-                                    function onSignIn(googleUser) {
-                                        var profile = googleUser.getBasicProfile();
-                                        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                                        console.log('Name: ' + profile.getName());
-                                        console.log('Image URL: ' + profile.getImageUrl());
-                                        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-                                        var id_token = googleUser.getAuthResponse().id_token;
-                                        console.log(id_token);
-                                    }
-                                    function signOut() {
-                                        var auth2 = gapi.auth2.getAuthInstance();
-                                        auth2.signOut().then(function () {
-                                            console.log('User signed out.');
-                                        });
-                                    }
-                                </script>
-</body>
+
+
+
+
 
 </html>

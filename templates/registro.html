@@ -10,30 +10,23 @@
 </head>
 
 <body>
+        <button type="submit" class="boton-atras">
+            <a href="{{ url_for('index.index') }}">
+                <img class="send" src="static\web\img\svg\Move-Back--Streamline-Ultimate.svg" alt="Iniciar Sesión"></a>
+        </button>
 
-    <!--
-    Imagenes Presentación
--->
-
-    <section class="contenedor-principal">
-
-        <article class="contenedor-login">
-
-            <section class="contenedor-img">
-                <img class="img-principal" src="/static/web/img/img login/register/fondoDos.png" alt="">
-                <div class="contenedor-interior">
-                    <h1>Prepárate para<br>explorar</h1>
-                    <img class="logo" src="/static/web/img/img login/register/logoDos.png" alt="loguito :D">
-                    <h4>¡Comienza a saborear nuevos<br>momentos con nosotros!</h4>
-                </div>
-            </section>
-            <!--
-    Formulario
--->
-            <section class="contenedor-formulario">
                 <form method="POST" action="/registro">
                     <div class="elegir-opcion">
-                        <!-- ... (opciones para login y registro) ... -->
+                        <div class="cont-log"><a href="{{ url_for('login') }}">
+                            <p>Logeate</p>
+                        </a>
+                        
+                        </div>
+                        <div class="cont-reg"><a href="{{ url_for('registro') }}">
+                                <p>Registrate</p>
+                            </a>
+                            <div class="select-visible"></div>
+                        </div>
                     </div>
 
                     <div class="formulario">
@@ -43,6 +36,7 @@
                             <label for="username"><img class="icon icon-user"
                                     src="/static/web/img/img login/login/usuario.png" alt=""></label>
                         </div>
+                        <br>
                         <div class="password">
                             <input id="password" name="password" class="datos" type="password"
                                 placeholder="Ingresar contraseña">
@@ -53,13 +47,18 @@
                                 </div>
                             </label>
                         </div>
+                        <br>
                         <div class="email">
                             <input type="email" name="email" class="datos" id="datos-email"
                                 placeholder="Ingresar E-mail">
                             <label for="datos-email"><img class="icon" src="/static/web/img/img login/register/email.png"
                                     alt=""></label>
                         </div>
-                        <input type="submit" value="Registrarse">
+                        <br>
+                        <button type="submit" class="boton-enviar">
+                            <img class="send" src="static\web\img\svg\Log-Out-Square-1--Streamline-Nova.svg" alt="Registrarse">
+                        </button>
+                        
                     </div>
                 </form>
             </section>
