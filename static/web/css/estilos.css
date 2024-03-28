@@ -484,3 +484,147 @@ footer{
     color: #5f5f5f;
  
 }
+
+
+
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+  header {
+    height: auto;
+    padding: 10px;
+  }
+
+  .contHeader {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .perfilHeader {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  nav {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .redesHeader {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .redes {
+    width: auto;
+  }
+
+  .perfil {
+    width: 50px; /* Ajusta el tamaño del icono de perfil para dispositivos móviles */
+  }
+
+  .direcciones {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .direcciones li {
+    margin: 5px; /* Espacio entre elementos de la lista */
+    border-bottom: none; /* Eliminar borde inferior al hacer hover */
+  }
+
+  .direcciones li:hover {
+    transform: none; /* Eliminar la transformación al hacer hover */
+  }
+}
+
+/* Comments styles (responsive) */
+
+@media only screen and (max-width: 768px) {
+  .contPrincipal {
+    flex-direction: column; /* Cambia la dirección de la columna */
+  }
+  
+  .presentacion {
+    flex-direction: column; /* Cambia la dirección de la columna */
+    align-items: center; /* Centra los elementos */
+    margin: 10px;
+    background-color: transparent;
+  }
+  
+  .contImg {
+    width: 100%; /* Ajusta el ancho */
+  }
+  
+  .texto-encima {
+    font-size: 30px; /* Ajusta el tamaño del texto */
+  }
+  
+  .boton-encima {
+    bottom: 0px;
+    position: relative;
+  }
+  
+  .subTexto {
+    height: auto; /* Ajusta la altura automáticamente */
+  }
+  
+  .contMover {
+    flex-direction: column; /* Cambia la dirección de la columna */
+    gap: 20px; /* Espacio entre elementos */
+  }
+  
+  .botonDentro {
+    position: relative; /* Restaura la posición relativa */
+    bottom: none;
+  }
+  .imagen{
+    display: none;
+  }
+  img.secImg{
+    border-radius: 30px;
+    margin-top: 10px;
+  }
+  .contPostres{
+    display: none;
+  }
+
+  .contTerceario{
+     width: 80%;
+    height: 200px;
+  }
+}
+
+/* Media query para pantallas más pequeñas que 480px */
+@media only screen and (max-width: 480px) {
+  .title h1 {
+    font-size: 60px; /* Ajusta el tamaño del título */
+  }
+  
+  .contTexto {
+    font-size: 20px; /* Ajusta el tamaño del texto */
+  }
+  
+  .redesSociales {
+     display: flex;
+
+    height: auto; /* Ajusta la altura según sea necesario */
+  }
+  
+  .contRedes {
+      display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Divide en 2 columnas de igual ancho */
+    gap: 10px; /* Espacio entre elementos */
+    justify-items: center;
+ 
+  }
+  .red{
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+  }
+  .siguenosText{
+    margin-bottom: 0px;
+  }
+}

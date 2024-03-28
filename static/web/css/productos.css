@@ -22,8 +22,7 @@ h1, h2, h3, h4, h5{
 .titulo{
     color: #79d371;
     font-family: 'Lilita One';
-    font-size: 55px;
-    font-size: 2.5em; /* Puedes ajustar el tamaño del texto con em o rem */
+    font-size: 250%; /* Puedes ajustar el tamaño del texto con em o rem */
     width: 100%; /* El div se ajustará al ancho del contenedor padre */
 }
 
@@ -74,6 +73,12 @@ h1, h2, h3, h4, h5{
 @media (max-width: 768px) {
     .sup-producto {
         column-count: 2; /* Cambia a 2 columnas */
+    }
+
+    .titulo{
+
+    font-size: 200%; /* Puedes ajustar el tamaño del texto con em o rem */
+
     }
 }
 
