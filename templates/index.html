@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link type="image/png" rel="icon" href="../static/web/img/logo/Dulces promesas.jpg">
+    <link rel="stylesheet" href="../static/web/css/logout.css">
     <title>"Las Dulces Promesas"</title>
 </head>
 <body>
@@ -20,7 +21,14 @@
             <section class="perfilHeader">
 
                 <a href="{{ url_for('login') }}"><img src="/static/web/img/perfil.png" class="perfil" alt="perfil"></a>
-                <i class='bx bx-chevron-down bx-md'></i>
+                <a href="{{ url_for('logout.cerrar_sesion') }}">
+                    <i class='bx  bx-md log-out-i'>
+                        <div class="options"><img src="../static/web/img/svg/Navigation-Menu-Vertical-1--Streamline-Ultimate.svg" alt=""></div>
+                        <div class="log-out"><img src="..\static\web\img\svg\User-Logout--Streamline-Ultimate.svg" alt=""></div>
+                    </i>
+                    
+                </a>
+
                 <div class="perfil-name">
                     {% if username %}
                     <p>Bienvenido, {{ username }}!</p>

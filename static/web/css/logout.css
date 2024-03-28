@@ -1,0 +1,33 @@
+.log-out {
+    display: none;
+}
+
+.log-out-i:hover .options {
+    display: none;
+}
+
+.log-out-i:hover .log-out {
+    display: block;
+}
+
+
+.log-out-i{
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+
+.log-out-i:hover{
+    transform: scale(1.2) translateY(-5px);
+    -webkit-transform: scale(1.2) translateY(-5px);
+    -moz-transform: scale(1.2) translateY(-5px);
+    -ms-transform: scale(1.2) translateY(-5px);
+    -o-transform: scale(1.2) translateY(-5px);
+}
+
+.log-out-i{
+    margin: 10px;
+    
+}
