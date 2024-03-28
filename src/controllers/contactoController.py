@@ -13,6 +13,9 @@ from src.controllers.baseController import BaseController
 from src.models.contactoModel import ContactoModel
 from src.entities.contactoEntity import ContactoEntity
 from email.mime.text import MIMEText
+
+from flask import flash, redirect, request, render_template, url_for, session
+
 import smtplib
 
 class ContactoController(BaseController):
@@ -23,6 +26,7 @@ class ContactoController(BaseController):
         self.app.route('/contacto', methods=['GET', 'POST'])(self.contacto)
 
     def send_email(self, nombre, email, mensaje):
+        
         try:
             smtp_server = 'sandbox.smtp.mailtrap.io'
             smtp_port = 587
@@ -46,6 +50,7 @@ class ContactoController(BaseController):
             return False
 
     def contacto(self):
+        
         try:
             if request.method == 'POST':
                 nombre = request.form['nombre']
@@ -68,5 +73,7 @@ class ContactoController(BaseController):
             print(f'Error: {str(error)}')
             flash(f'Error: {str(error)}', 'error')
             return render_template('contacto.html'), 500
+        
+        username = session.get('username', None)
+        return render_template('contacto.html', username=username)
 
-        return render_template('contacto.html')

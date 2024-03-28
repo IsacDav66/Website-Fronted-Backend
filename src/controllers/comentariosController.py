@@ -13,6 +13,7 @@ from src.controllers.baseController import BaseController
 from src.models.comentarioModel import ComentarioModel
 from src.entities.comentarioEntity import ComentarioEntity
 from datetime import datetime
+
 import pytz
 
 class ComentariosController(BaseController):
@@ -41,7 +42,8 @@ class ComentariosController(BaseController):
 
             elif request.method == 'GET':
                 comentarios_list = ComentarioModel.get_comentarios(self)
-                return render_template('comentarios.html', comentarios=comentarios_list)
+                username = session.get('username', None)
+                return render_template('comentarios.html', username=username, comentarios=comentarios_list)
 
         except Exception as e:
             print(f"Error en la función 'comentarios': {str(e)}")

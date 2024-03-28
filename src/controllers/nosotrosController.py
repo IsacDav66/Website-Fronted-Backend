@@ -1,6 +1,7 @@
 # src/controllers/nosotrosController.py
 from flask import render_template
 from src.controllers.baseController import BaseController
+from flask import flash, redirect, request, render_template, url_for, session
 
 class NosotrosController(BaseController):
     def __init__(self, app):
@@ -11,4 +12,7 @@ class NosotrosController(BaseController):
 
     def nosotros(self):
         # tu lógica aquí
-        return render_template('nosotros.html', datos='AlgunosDatos')
+        
+        username = session.get('username', None)
+        return render_template('nosotros.html', username=username, datos='AlgunosDatos')
+
