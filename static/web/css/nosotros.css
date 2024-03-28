@@ -374,3 +374,110 @@ footer{
     transform: none; /* Eliminar la transformación al hacer hover */
   }
 }
+
+
+
+@media screen and (max-width: 768px) {
+    .contPrincipal{
+        width: 90%; /* Cambiamos el ancho del contenedor principal para que ocupe el 90% del ancho en dispositivos móviles */
+    }
+
+    /* Estilos generales */
+
+.contNosotros{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleNosotros{
+    width: 100%;
+    font-family: 'Inter';
+    font-size: 35px;
+}
+
+.contPrincipal{
+    
+    height: auto; /* Cambiamos height a auto para que se ajuste al contenido */
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.imgPrincipal{
+    display: none; /* Ocultamos la imagen principal en dispositivos móviles */
+}
+
+.imge{
+    width: 100%;
+    height: auto; /* Cambiamos height a auto para que se ajuste al contenido */
+}
+
+.nosotros{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.png{
+    transition: all 0.4s ease-in;
+    -webkit-transition: all 0.4s ease-in;
+    -moz-transition: all 0.4s ease-in;
+    -ms-transition: all 0.4s ease-in;
+    -o-transition: all 0.4s ease-in;
+    width: 100%;
+    padding: 10px;
+}
+
+.png:hover{
+    filter: drop-shadow(0px 0px 35px rgb(67, 164, 255));
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.info{
+    font-family: 'Jost';
+    font-size: 4vw;
+    margin: 10px;
+}
+}
+
+
+/* Media query para pantallas más pequeñas que 480px */
+@media only screen and (max-width: 480px) {
+  .title h1 {
+    font-size: 60px; /* Ajusta el tamaño del título */
+  }
+  
+  .contTexto {
+    font-size: 20px; /* Ajusta el tamaño del texto */
+  }
+  
+  .redesSociales {
+     display: flex;
+
+    height: auto; /* Ajusta la altura según sea necesario */
+  }
+  
+  .contRedes {
+      display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Divide en 2 columnas de igual ancho */
+    gap: 10px; /* Espacio entre elementos */
+    justify-items: center;
+ 
+  }
+  .red{
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+  }
+  .siguenosText{
+    margin: 10px;
+    height:auto;
+  }
+}
