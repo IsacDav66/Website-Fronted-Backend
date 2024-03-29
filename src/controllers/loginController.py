@@ -32,6 +32,7 @@ class LoginController(BaseController):
                 session['username'] = username
                 return redirect('/index')
             else:
-                return "Credenciales incorrectas. Intenta de nuevo."
+                error_message = "Credenciales incorrectas. Intenta de nuevo."
+                return render_template('login.html', error_message=error_message)
 
         return render_template('login.html')

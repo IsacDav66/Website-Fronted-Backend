@@ -42,7 +42,8 @@ class RegistroController(BaseController):
 
             # Validar la contraseña antes de intentar el registro
             if not self.validate_password(password):
-                return "La contraseña no cumple con los requisitos. Intenta de nuevo."
+                error_message = "La contraseña no cumple con los requisitos. Intenta de nuevo."
+                return render_template('registro.html', error_message=error_message)
 
             registro_entity = RegistroEntity(username=username, password=password, email=email)
             if RegistroModel.register_user(registro_entity.username, registro_entity.password, registro_entity.email):

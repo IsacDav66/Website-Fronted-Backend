@@ -1,0 +1,6 @@
+        .sweet-alert {
+            position: fixed !important;
+            top: 50px !important; /* Puedes ajustar esta posición según sea necesario */
+            left: 50%;
+            transform: translateX(-50%);
+        }

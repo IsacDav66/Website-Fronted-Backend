@@ -75,9 +75,9 @@
             <article class="titulo">
             <h1>Lista de Productos</h1>
             </article>
-                    <div class="sesion">
+                    <div class="sesion {% if not cart_id %}no-cart{% endif %}">
                         {% if cart_id %}
-                        <p>Número de compra : {{cart_id}}</p>
+                        <p>Número de compra: {{ cart_id }}</p>
                         {% else %}
                         <p>Sin número de compra</p>
                         {% endif %}
@@ -109,6 +109,18 @@
                     {% endfor %}
                 </ul>
     </div>
+
+    {% if error_message %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            title: 'Error',
+            text: '{{ error_message }}',
+            icon: 'error',
+            confirmButtonText: 'REINTENTAR'
+        });
+    </script>
+    {% endif %}
 </body>
 
 </html>

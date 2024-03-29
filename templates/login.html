@@ -10,7 +10,7 @@
     <meta name="google-signin-client_id"
         content="572940261909-sdkgkduojsuucvb05o2iesop6o21cnhb.apps.googleusercontent.com">
     <link type="image/png" rel="icon" href="../static/web/img/logo/Dulces promesas.jpg">
-        
+    <link rel="stylesheet" href="../static\web\css\sweetalerts2.css">
     <title>Bienvenio/a - Dulces Promesas</title>
 </head>
 
@@ -69,7 +69,17 @@
     </section>
 
 
+    {% if error_message %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            title: 'Error',
+            text: '{{ error_message }}',
+            icon: 'error',
+            confirmButtonText: 'REINTENTAR'
+        });
+    </script>
+    {% endif %}
 
-
-
+</body>
 </html>

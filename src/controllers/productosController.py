@@ -203,6 +203,7 @@ class ProductosController(BaseController):
                 return render_template('carrito.html', productos_en_carrito=productos_en_carrito, total_price_sum=total_price_sum, username=username, cart_id=cart_id)
 
             else:
+                print("No hay productos")
                 flash('No hay productos en tu carrito.', 'error')
 
         except Exception as error:

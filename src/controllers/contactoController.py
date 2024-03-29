@@ -64,7 +64,8 @@ class ContactoController(BaseController):
                 if ContactoModel.insert_contacto(contacto_entity):
                     # Enviar correo
                     if self.send_email(nombre, email, mensaje):
-                        return 'Correo enviado y datos insertados correctamente'
+                        error_message = "Se han enviado correctamente los datos."
+                        return render_template('contacto.html', error_message=error_message)
                     else:
                         flash("Error al enviar correo. Intenta de nuevo.", "error")
                         return render_template('contacto.html')

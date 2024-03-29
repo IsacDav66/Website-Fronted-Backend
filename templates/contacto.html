@@ -149,5 +149,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/static/web/js/contacto.js"></script>
+    {% if error_message %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            title: 'Enviado',
+            text: '{{ error_message }}',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+        });
+    </script>
+    {% endif %}
 </body>
 </html>

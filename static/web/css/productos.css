@@ -141,3 +141,16 @@ input[type=number]:focus {
     width: 100%; /* Ancho del div */
   height: auto; /* Alto del div */
 }
+
+
+
+
+
+
+
+.sesion .no-cart form {
+    display: none;
+}
+.sesion.no-cart form {
+    display: none;
+}
