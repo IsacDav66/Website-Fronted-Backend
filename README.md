@@ -1,5 +1,7 @@
 # Pastelería Online: Aplicación Web Python
 
+![image](https://github.com/user-attachments/assets/faaead4d-12f1-4ac8-9387-352694e8465a)
+
 **Desplegado en Render**
 
 [Ver app web](https://website-fronted-backend-1.onrender.com/index/)
@@ -67,6 +69,8 @@ Una vez que la aplicación esté en funcionamiento, abre tu navegador y visita `
 ## Soporte
 
 Si encuentras algún problema o tienes alguna pregunta, no dudes en abrir un Issue en este repositorio. Estaremos encantados de ayudarte.
+
+*Base de datos*: Desactualizada
 
 ## Licencia
 
